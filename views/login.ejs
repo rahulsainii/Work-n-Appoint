@@ -1,0 +1,219 @@
+<html>
+    <head>
+        <title>Login Page</title>
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Slabo+27px&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="heading">
+        </div>
+        <div class="main_div">
+            <nav class="box">
+                <div class="heading"><h1>Login</h1></div>
+                <hr>
+                <input type="text" name="email" placeholder="Enter Your E-Mail" class="test" id="email">
+                <input type="password" placeholder="Enter password" name="password" class="test" id="password">
+                <div id="option">
+                   Job Seeker<input type="radio" name="role"id="job-seeker" checked/>
+                   Job Provider<input type="radio" name="role"id="job-provider"/>
+                </div>   
+                <input type="submit" name="" value="Login" class="btn" id="submit">
+                <div>
+                    <h3 id="forget"style="color:white;"><u style="color:white">Forget password !</u></h3>
+                </div>
+            </nav>
+        </div>
+    </body>
+    <script>
+        let forget=document.getElementById("forget");
+        forget.addEventListener("click",function(e)
+        {
+            e.preventDefault();
+            console.log("called");
+            let email=document.getElementById("email").value;
+            if(email=="")
+            {
+                       swal({
+                                title: "Password chahiye ?",
+                                text: "Fill email first ",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });
+            }
+            else if(document.getElementById("job-seeker").checked==true)
+            {
+                let xhttp=new XMLHttpRequest();
+                xhttp.onreadystatechange = function() 
+                {
+                if(this.readyState == 4 && this.status == 200) 
+                {
+                    console.log("called"+this.response)
+                    if(this.responseText)
+                    {
+                        var a=JSON.parse(this.responseText);
+                        console.log("a is "+this.responseText);
+                        if(a.result=="Wrong Email")
+                        {
+                            swal({
+                                title: "Wrong Email",
+                                text: "Email bhi nhi yaad",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });       
+                        }
+                        else
+                        {
+                            swal({
+                                title: "PASSWORD READY = "+a.result+"",
+                                text: "Dont forget again",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });   
+                        }
+                    }    
+                  }  
+                };
+                xhttp.open("GET","/forget_user?email="+email+"",true);
+                xhttp.send();
+            }
+            else
+            {
+                let xhttp=new XMLHttpRequest();
+                xhttp.onreadystatechange = function() 
+                {
+                if(this.readyState == 4 && this.status == 200) 
+                {
+                    console.log("called"+this.response)
+                    if(this.responseText)
+                    {
+                        var a=JSON.parse(this.responseText);
+                        console.log("a is "+this.responseText);
+                        if(a.result=="Wrong Email")
+                        {
+                            swal({
+                                title: "Wrong Email",
+                                text: "Email bhi nhi yaad",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });       
+                        }
+                        else
+                        {
+                            swal({
+                                title: "PASSWORD READY = "+a.result+"",
+                                text: "You Are a company be responsible",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });   
+                        }
+                    }    
+                  }  
+                };
+                xhttp.open("GET","/forget_company?email="+email+"",true);
+                xhttp.send();
+            }
+        });
+
+         var btn=document.getElementById("submit");
+         btn.addEventListener("click",function()
+         {
+             console.log("called");
+            let email=document.getElementById("email").value;
+            console.log(email);
+            var password=document.getElementById("password").value;
+            if(document.getElementById("job-seeker").checked==true)
+            {
+                let xhttp=new XMLHttpRequest();
+                xhttp.onreadystatechange = function() 
+                {
+                if(this.readyState == 4 && this.status == 200) 
+                {
+                    console.log("called"+this.responseText);
+                    if(this.responseText)
+                    {
+                        let a=JSON.parse(this.responseText);
+                        console.log("a is "+a);
+                        if(a.result=="Wrong password")
+                        {
+                            swal({
+                                title: "Wrong Password",
+                                text: "Please fill the right password",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });      
+                        }
+                        else if(a.result=="user not present")
+                        {
+                            swal({
+                                title: "User Not Present",
+                                text: "Please Sign up",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });
+                        }
+                        else{
+                            swal({
+                                title: "Login Successful",
+                                text: "Redirecting to homepage",
+                                icon: "Success",
+                                button: "Try Again..",
+                            });
+                            window.location="/main_home";
+                        }
+                    }    
+                } 
+                };
+                xhttp.open("GET","/login_user?email="+email+"&password="+password+"",true);
+                xhttp.send();
+            }
+            else
+            {
+                let xhttp1=new XMLHttpRequest();
+                xhttp1.onreadystatechange = function() 
+                {
+                if(this.readyState == 4 && this.status == 200) 
+                {
+                    console.log("called"+this.responseText);
+                    if(this.responseText)
+                    {
+                        let a=JSON.parse(this.responseText);
+                        console.log("a is "+this.responseText);
+                        if(a.result=="Wrong password")
+                        {
+                            swal({
+                                title: "Wrong Password",
+                                text: "Please fill the right password",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });       
+                        }
+                        else if(a.result=="user not present")
+                        {
+                            swal({
+                                title: "Company Not Present",
+                                text: "Please Sign up",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });
+                        }
+                        else{
+                            swal({
+                                title: "Login Successfull ",
+                                text: "Redirecting to homepage",
+                                icon: "success",
+                                button: "Try Again..",
+                            });
+                            window.location="/main_home_company";
+                        }
+                    }    
+                  }  
+                };
+                xhttp1.open("GET","/login_company?email="+email+"&password="+password+"",true);
+                xhttp1.send();
+            }    
+        });  
+        
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</html>

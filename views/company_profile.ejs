@@ -1,0 +1,645 @@
+<html>
+    <head>
+        <title>Profile</title>
+        <style>
+            #upperdiv
+            {
+              display:flex;
+              height:100px;
+              background:#009999;
+              color:white;
+              font-size:30px;
+              margin-bottom:10px;
+            }
+            #upperdiv1
+            {
+                flex:3;
+                margin:auto;
+                width:200px;
+                font-size:40px;
+                padding-top:27px;
+                padding-left:13%;
+                font-family:cursive;
+            }
+            #upperdiv2
+            {
+               flex:1;
+               padding-top:30px;
+               padding-left:50%;
+            }
+            #logout
+            {
+                height:50px;
+                width:120px;
+                font-size:30px;
+                color: #009999;
+                background:white;
+                border-radius:10px;
+            }
+            #logout:hover
+            {
+                background:#009999;
+                color:white;
+                height:55px;
+                width:130px;
+                cursor: pointer;
+
+            }
+
+            
+            #container
+            {
+               display:flex;
+            }
+            #container1
+            {
+               flex:1;
+               border-right:1px solid;
+               padding:20px;
+               padding-top:0px;
+               padding-left:0px;
+            }
+            #image_container
+            {
+                background:#009999;
+                color:white;
+                padding:30px;
+            }
+            #container2
+            {
+              flex:2;
+            }
+            #uppercontainer
+            {
+                height:70px;
+                display:flex;
+                color:white;
+                background-color: #009999;
+                font-size:20px;
+                padding:10px;
+            }
+            #uppercontainer1
+            {
+              flex:1;
+              margin:auto;
+              padding:20px;
+              border-radius:50px;
+            }
+            #uppercontainer2
+            {
+              flex:1;
+              margin:auto;
+              padding:20px;
+              border-radius:50px;
+            }
+            #uppercontainer3
+            {
+              flex:1;
+              margin:auto;
+              padding:20px;
+              border-radius:50px;
+            }
+            #uppercontainer1:hover
+            {
+                cursor:pointer;
+            }
+            #uppercontainer2
+            {
+               border:20px black;
+               cursor:pointer;
+            }
+            #showing_container
+            {
+                color:black;
+            }
+            #imageupload
+            {
+                display:none;
+                 
+            }
+            #insideimagecontainer
+            {
+                width:33%;
+                margin:auto;
+            }
+            #save,#cancel
+            {
+                display:none;
+            }
+            #my_pic
+            {
+                border-radius:50%;
+                height:150px; 
+                width:150px;
+            }
+            .btn1
+            {
+               height:40px;
+               width:65px;
+               font-size:16px;
+               color:white;
+               background:#009999;
+               border-radius:10px;
+            }
+            #change_image
+            {
+              width:90px;
+              height:40px;
+              margin-left:15%;
+            }
+            .input_class
+            {
+                background:white;
+                border-top-style:hidden;
+                border-right-style:hidden;
+                border-left-style:hidden;
+                border-bottom-style:groove;
+                font-size:20px;
+                width:200px;
+            }
+            #emailid,#yob,#experience
+            {
+                border:1px solid #009999;
+                border-radius:15px;
+            }
+            #job_desc
+            {
+                display:none;
+                position:fixed;
+                top:95px;
+                width:70%;
+                height:80vh;
+                left:18%;  
+                background:#009999;
+                background:white;
+                border:3px solid #009999;
+            }
+            #desc_inside1
+            {
+                display:flex;
+                background:#009999;
+                border-bottom:10px solid white;
+            }
+            #desc_inside2
+            {
+                overflow:auto;
+                height:65vh;
+            }
+            #cross
+            {
+                padding-left:80%;
+            }
+            #cross>img:hover
+            {
+                height:55px;
+            }
+            #company
+            {
+            width:60%;
+            margin:auto;
+            margin-bottom:20px;
+            font-size:30px;
+            border:none;
+            }
+            #subject
+            {
+            margin:auto;
+            margin-bottom:20px;
+            font-size:30px;
+            border:none;
+            }
+            #ctc
+            {
+            margin:auto;
+            margin-bottom:20px;
+            font-size:20px;
+            border:none;
+            }
+            #description
+            {
+            margin:auto;
+            margin-bottom:20px;
+            font-size:20px;
+            border:none;
+            }
+            #exp
+            {
+            margin:auto;
+            margin-bottom:20px;
+            font-size:20px;
+            border:none;
+            }
+            #location
+            {
+            width:50%;
+            margin:auto;  
+            margin-bottom:20px;
+            font-size:20px;
+            border:none;
+            }
+            .button
+            {
+            width:200px;
+            height:50px;
+            margin:20px;
+            background: white;
+            color:#009999;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="upperdiv">
+            <div id="upperdiv1">
+                Profile
+            </div>
+            <div id="upperdiv2">
+                <button id="logout">Logout</button>
+            </div>
+        </div>
+        <hr>
+        <div id="container">
+            <div id="container1">
+                <div id="image_container">
+                    <div id="insideimagecontainer">
+                        <img src="<%= user.img %>" height="200px" width="200px" id="my_pic"/>
+                        <button id="change_image" class="btn1">Change Image</button>
+                        <form action="/uploadimage_company" method="POST" enctype="multipart/form-data">
+                            <div id="imageupload">
+                                    <h4>Choose a profile pic: <input type="file" accept="image/*" id="file" name="pic" required/></h4>
+                            </div>
+                            <!--<button id="edit_details" class="btn1">Edit Details</button>
+                            <button id="addskills" class="btn1">Add Skills</button>-->
+                            <input type="submit" id="save" value="save" class="btn1"/>
+                            <input type="reset" id="cancel" class="btn1" value="Cancel"/>
+                        </form>
+                    </div>    
+                    <!--<button id="cancel" class="btn1">Cancel</button>-->
+                </div>
+                <hr/>
+                <div>
+                        <div>
+                                <h2>Company Name : <input type="text" value="<%= user.company_name %>" class="input_class" disabled/></h2>
+                        </div>
+                        <div id="emailid">
+                                <h2>Company Description :</h2>
+                                <h4><%= user.company_desc %></h4>
+                        </div>
+                        <div id="yob">
+                                <h2>Bussiness Years :</h2>
+                                <h3><%= user.yob %></h3>
+                        </div>
+                        <div id="experience">
+                                <h2>Address :</h2>
+                                <h3><%= user.company_address %>,<%= user.company_country %></h3>
+                        </div> 
+                    </div>        
+            </div>
+            <div id="container2">
+                <div id="uppercontainer">
+                    <div id="uppercontainer1">
+                       Applied Jobs 
+                    </div>
+                    <div id="uppercontainer2">
+                       Interested jobs
+                    </div>
+                    <div id="uppercontainer3">
+                            Posted jobs
+                         </div>
+                </div>
+               <div id="showing_container">
+                    
+               </div>
+            </div>
+        </div>
+        <div id="job_desc">
+                <div id="desc_inside1">
+                    <div>
+                       <h3>Job Description</h3>
+                    </div>
+                    <div id="cross">
+                        <img src="/images/cross2.png" height="50px"/>
+                    </div>
+                </div>
+                <hr>
+                <div id="desc_inside2">
+                    <div id="company">Company :</div>
+                    <div id="subject"></div>
+                    <div id="description"></div>
+                    <div id="ctc"></div>
+                    <div id="skills"></div>
+                    <div id="exp"></div>
+                    <div id="location"></div>
+                    <div id="last_div"></div>
+                </div>    
+            </div>
+    </body>
+    <script>
+        let applied=document.getElementById("uppercontainer1");
+        let jobs_div=document.getElementById("showing_container");
+        let interested=document.getElementById("uppercontainer2");
+        let posted=document.getElementById("uppercontainer3");
+        let logout=document.getElementById("logout");
+        let edit=document.getElementById("edit_details");
+        let save=document.getElementById("save");
+        let change=document.getElementById("change_image");
+        let username=document.getElementById("username");
+        let emailid=document.getElementById("emailid");
+        let job_desc1=document.getElementById("job_desc");
+        let subject1=document.getElementById("subject");
+        let company1=document.getElementById("company");
+        let ctc1=document.getElementById("ctc");
+        let skills1=document.getElementById("skills");
+        let desc1=document.getElementById("description");
+        let location1=document.getElementById("location");
+        let exp1=document.getElementById("exp");
+        let last_div=document.getElementById("last_div");
+        let cross=document.getElementById("cross");
+        var user=new Object();
+        let f=1;
+        get_user();
+        function get_user()
+        {
+            var req=new XMLHttpRequest();
+            req.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                user=JSON.parse(this.responseText);
+                console.log(user);
+                }; 
+            };
+            req.open("GET","/getuser",true);
+            req.send();
+        }
+        fetch_applied();
+
+        applied.addEventListener("click",fetch_applied);
+        function fetch_applied()
+        {
+            f=1;
+            applied.style.background="white";
+            applied.style.color="#009999";
+            interested.style.background="#009999";
+            interested.style.color="white";
+            posted.style.background="#009999";
+            posted.style.color="white";
+            var req=new XMLHttpRequest();
+            req.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                console.log("called"+this.responseText);
+                jobs=JSON.parse(this.responseText);
+                console.log(jobs);
+                jobs_div.innerHTML="";
+                if(jobs.result=="nothing")
+                {
+                   jobs_div.innerHTML="NO JOB APPLIED ";
+                }
+                else
+                {
+                    var total_jobs=jobs.result.length;
+                    for(let i=0;i<=total_jobs-1;i++)
+                    {
+                        jobs_div.appendChild(add_jobs(jobs.result[i]));
+                    }
+                }
+              }; 
+            };
+            req.open("GET","/get_applied_company",true);
+            console.log(req);
+            req.send();
+        }
+        interested.addEventListener("click",fetch_interested);
+        function fetch_interested()
+        {
+            f=2;
+            applied.style.background="#009999";
+            applied.style.color="white";
+            posted.style.background="#009999";
+            posted.style.color="white";
+            interested.style.color="#009999";
+            interested.style.background="white";
+            var req=new XMLHttpRequest();
+            req.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                console.log("called"+this.responseText);
+                jobs=JSON.parse(this.responseText);
+                console.log(jobs);
+                jobs_div.innerHTML="";
+                if(jobs.result=="nothing")
+                {
+                   jobs_div.innerHTML="NO JOB added in interested ";
+                }
+                else
+                {
+                    var total_jobs=jobs.result.length;
+                    for(let i=0;i<=total_jobs-1;i++)
+                    {
+                        jobs_div.appendChild(add_jobs(jobs.result[i]));
+                    }
+                }
+              }; 
+            };
+            req.open("GET","/get_interested_company",true);
+            console.log(req);
+            req.send();
+        };
+
+
+        posted.addEventListener("click",getposted);
+        function getposted()
+        {
+            f=3;
+            applied.style.background="#009999";
+            applied.style.color="white";
+            interested.style.color="white";
+            interested.style.background="#009999";
+            posted.style.background="white";
+            posted.style.color="#009999";
+            var req=new XMLHttpRequest();
+            req.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                console.log("called"+this.responseText);
+                jobs=JSON.parse(this.responseText);
+                console.log(jobs);
+                jobs_div.innerHTML="";
+                if(jobs.result=="nothing")
+                {
+                   jobs_div.innerHTML="NO JOB added in interested ";
+                }
+                else
+                {
+                    var total_jobs=jobs.result.length;
+                    for(let i=0;i<=total_jobs-1;i++)
+                    {
+                        jobs_div.appendChild(add_jobs(jobs.result[i]));
+                    }
+                }
+              }; 
+            };
+            req.open("GET","/get_posted",true);
+            console.log(req);
+            req.send();
+        }
+        logout.addEventListener("click",function()
+        {
+            let req=new XMLHttpRequest();
+            let res;
+            req.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                console.log("called"+this.responseText);
+                res=JSON.parse(this.responseText);
+                console.log(res);
+                if(res.result=="successful")
+                {
+                    window.location="/login";
+                    swal({
+                                title: "Logout Successful",
+                                text: "logout",
+                                icon: "Success",
+                                button: "OK...",
+                            });  
+                }
+                else
+                {
+                    swal({
+                                title: "Logout Unsuccessful",
+                                text: "Temporary issue",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });  
+                }
+              }; 
+            };
+            req.open("GET","/logout",true);
+            console.log(req);
+            req.send();
+        });
+        function add_jobs(arr)
+        {
+            var outerdiv=document.createElement("div");
+            outerdiv.style.margin="auto";
+            var sub=document.createElement("h2");
+            sub.innerHTML=arr.subject;
+            var desc=document.createElement("h4");
+            desc.innerHTML=arr.desc;
+            var ctc=document.createElement("label");
+            ctc.innerHTML="CTC :-"+arr.ctc+"<br>";
+            var skills=document.createElement("label");
+            skills.innerHTML="Skills :-"+arr.skills+"<br>";
+            var exp=document.createElement("label");
+            exp.innerHTML="Exp:-"+arr.experience;
+            var company=document.createElement("label");
+            company.innerHTML=arr.company;
+            var location=document.createElement("label");
+            location.innerHTML=arr.location;
+            outerdiv.style.borderRadius="10px";
+            outerdiv.style.color="#23050e";
+            outerdiv.style.margin="auto";
+            outerdiv.style.border="1px solid";
+            outerdiv.appendChild(sub);
+            outerdiv.appendChild(ctc);
+            outerdiv.appendChild(skills);
+            outerdiv.appendChild(exp);
+            outerdiv.addEventListener("click",function()
+            {
+                let flag_applied=0;
+                let flag_interest=0;
+                company1.innerHTML="";
+                subject1.innerHTML="";
+                ctc1.innerHTML="";
+                exp1.innerHTML="";
+                skills1.innerHTML="";
+                desc1.innerHTML="";
+                location1.innerHTML="";
+                job_desc1.style.display="block";
+                company1.appendChild(company.cloneNode(true));
+                subject1.appendChild(sub.cloneNode(true));
+                ctc1.appendChild(ctc.cloneNode(true));
+                exp1.appendChild(exp.cloneNode(true));
+                skills1.appendChild(skills.cloneNode(true));
+                desc1.appendChild(desc.cloneNode(true));
+                location1.appendChild(location.cloneNode(true));
+                let apply_btn=document.createElement("button");
+                let already_applied=document.createElement("button");
+                let already_interest=document.createElement("button");
+                already_applied.innerHTML="Already applied";
+                already_applied.className="button";
+                apply_btn.innerHTML="Apply Now"
+                apply_btn.className="button";
+                
+                let my_interest=document.createElement("button");
+                last_div.innerHTML="";
+                if(f==1)
+                {
+                    last_div.appendChild(already_applied);
+                }  
+                else
+                {
+                   last_div.appendChild(apply_btn);
+                }
+                apply_btn.addEventListener("click",function()
+                {
+                let xhttp=new XMLHttpRequest();
+                xhttp.onreadystatechange = function() 
+                {
+                if(this.readyState == 4 && this.status == 200) 
+                {
+                    console.log("called"+this.response)
+                    if(this.responseText)
+                    {
+                        var a=JSON.parse(this.responseText);
+                        console.log("a is "+this.responseText);
+                        if(a.result=="successful")
+                        {
+                            swal({
+                            title: "Congratulations",
+                            text: "applied successfully",
+                            icon: "success",
+                            button: "close",
+                        });
+                        job_desc1.style.display="none";     
+                        fetch_interested();
+
+                        }
+                        else
+                        {
+                            swal({
+                                title: "Temporarily Failed",
+                                text: "Please try again",
+                                icon: "warning",
+                                button: "Try Again..",
+                            }); 
+                        }
+                    }    
+                    }  
+                };
+                xhttp.open("GET","/company_append_job?id="+arr.id,true);
+                xhttp.send();
+                });
+            });
+            return outerdiv;
+        }
+        change.addEventListener("click",function()
+        {
+            change.style.display="none";
+            save.style.display="inline";
+            cancel.style.display="inline";
+            document.getElementById("imageupload").style.display="block";
+        });
+        cancel.addEventListener("click",function()
+        {
+            change.style.display="inline";
+            save.style.display="none";
+            cancel.style.display="none";
+            document.getElementById("imageupload").style.display="none";
+        })
+        cross.addEventListener("click",function()
+        {
+          job_desc1.style.display="none"; 
+        });
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title>Add New Job</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Raleway',sans-serif;
+        }
+        #root{
+            background-image:  radial-gradient(#43cea2 , #185a9d);
+            margin:50px 0;
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .mainDiv
+        {
+            width:420px;
+            padding:10px;
+            border:3px solid white;
+            background: white;
+            border-radius: 3px;
+            border:2px solid #009999;
+            box-shadow: 3px 5px 8px #009999;
+        }
+        .mainDiv h2{
+            text-align: center;
+            margin: 20px;
+            font-size: 35px;
+            color:#009999;
+            text-shadow: 2px 3px 4px #009090;
+        }
+        nav .input_group{
+             margin-bottom: 20px;
+             font-size: 18px;
+             font-weight: bold;
+             margin-left: 10%;
+         }
+         nav .input_group input{
+            width:90%;
+            padding:10px;
+            border:2px solid #009999;
+         }
+         nav .input_group .job_desc
+         {
+            width:90%;
+            height: 70px;
+            padding:10px;
+            font-weight: bold;
+            font-size: 16px;
+            border:2px solid #009999;
+         }
+         nav .input_group .checkbox_group input{
+             margin-right: 10px;
+             padding:0px;
+             width:20px;
+         }
+         #add_job_btn{
+            margin-left: 30%;
+            padding : .5rem;
+            color:white;
+            font-weight: bold;
+            font-size: 20px;
+            width:150px;
+            height:40px;
+            background-image:  radial-gradient(#009999,#007080,#ffffff);
+            border-radius: 3rem;
+            cursor: pointer;
+         }
+    </style>
+</head>
+<body id="root">
+    <div class="mainDiv">
+        <h2 >Add New Job</h2>
+        <nav>
+            <div class="input_group">
+                <label>Job Title</label><br/>
+                  <input type="text" class="job_title" id="title" name="subject"/>
+            </div>
+            <div class="input_group">
+                <label>Job Description</label><br/>
+                  <textarea class="job_desc" id="desc" value="Enter The Job description here"> </textarea>
+            </div>
+            <div class="input_group">
+                <label><b>Skills</b></label>
+                <div class="checkbox_group">
+                    <input type="checkbox" class="skills" value="c" name="c" /> C <br>
+                    <input type="checkbox" class="skills" value="c++" name="c++"/> C++ <br> 
+                    <input type="checkbox" class="skills" value="java" name="java"/> Java <br>
+                    <input type="checkbox" class="skills" value="python" name="python"/> Python <br>
+                    <input type="checkbox" class="skills" value="html" name="html"/> HTML <br>
+                    <input type="checkbox" class="skills" value="css" name="css"/> CSS <br>
+                    <input type="checkbox" class="skills" value="js" name="js"/> Javascript<br>
+                    <input type="checkbox" class="skills" value="cloud_computing" name="cc"/> Cloud computing<br>
+                    <input type="checkbox" class="skills" value="django" name="django"/> Django <br>
+                    <input type="checkbox" class="skills" value="react js" name="react" /> React.js<br>
+                    <input type="checkbox" class="skills" value="node js" name="node" /> Node.js<br>
+                    <input type="checkbox" class="skills" value="machine learning" name="machine_learning" /> Machine Learning<br>
+                    <input type="checkbox" class="skills" value="flutter" name="flutter"/> Flutter<br>
+                    <input type="checkbox" class="skills" value="php" name="php"/> PHP<br>
+                    <input type="checkbox" class="skills" value="angular" name="angular"/> Angular<br>
+                    <input type="checkbox" class="skills" value="mern stack" nam="mern"/> MERN<br>
+                    <input type="checkbox" class="skills" value="mean stack" name="mean"/> MEAN <br>
+                </div>
+            </div>
+            <div class="input_group">
+              <label>Years of experience </label>
+              <input type="number" id="yoe" name="yoe" min="0" max="100" step="1"? />
+            </div>
+            <div class="input_group">
+                <label>CTC</label><br/>
+                  <input type="text" id="ctc" name="ctc" class="ctc" placeholder="Salary Amount" />
+            </div>
+            <input type="submit" value="Add Job" id="add_job_btn" />
+        </nav>
+    </div>
+</body>
+<script>
+    var btn=document.getElementById("add_job_btn");
+    btn.addEventListener("click",function1);
+    function function1()
+    {
+        var obj=new Object();
+        obj.subject=document.getElementById("title").value;
+        obj.desc=document.getElementById("desc").value;
+        var skill=document.getElementsByClassName("skills");
+        obj.skills=[];
+        for(let i=0;i<=skill.length-1;i++)
+        {
+            if(skill[i].checked==true)
+            obj.skills[obj.skills.length]=skill[i].value;
+        }
+        obj.experience=document.getElementById("yoe").value;
+        obj.ctc=document.getElementById("ctc").value;
+        if(obj.subject==""||obj.desc==""||yoe.experience==""||obj.ctc=="")
+        {
+            swal({
+                                title: "Be carefull",
+                                text: "Fill all the boxes",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });  
+        }
+        else
+        {
+            var xhttp=new XMLHttpRequest();
+            xhttp.onreadystatechange = function() 
+            {
+                if (this.readyState == 4 && this.status == 200) 
+                {
+                    //console.log("called"+this.responseText)
+                    var a=JSON.parse(this.responseText);
+                    console.log("a is "+a.result);
+                    if(a.result==1)
+                    {
+                        swal({
+                                title: "Good Job",
+                                text: "Job Saved Successfully",
+                                icon: "success",
+                                button: "wow",
+                            });     
+                    }
+                    else
+                    {
+                        swal({
+                                title: "Bad Job",
+                                text: "Job not Saved",
+                                icon: "warning",
+                                button: "Try Again..",
+                            });   
+                    }
+                } 
+            };
+            xhttp.open("POST","/addjob",true);
+            xhttp.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(obj));
+        }   
+        
+    }    
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</html>
